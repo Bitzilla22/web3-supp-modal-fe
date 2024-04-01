@@ -4,12 +4,7 @@ import io from "socket.io-client";
 
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
-    const socket = io(SERVER_URL, {
-        withCredentials: false,
-        extraHeaders: {
-            "dash-header": "abcd",
-        },
-    });
+    const socket = io(SERVER_URL);
     const chatPopup = document.querySelector("#chat-popup");
     const chatCloseButton = document.querySelector("#close-chat-btn");
     const chatPopupButton = document.querySelector("#chat-popup-button");
@@ -27,6 +22,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     } else {
         userObject = JSON.parse(localStorage.getItem("mm-chat-userId"));
     }
+    console.log(userObject);
 
     socket.on("message", (message) => {
         messages.push(message);
@@ -44,6 +40,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
         if (chatPopupButton.classList.contains("hidden")) {
             chatPopupButton.classList.remove("hidden");
         }
+        socket.emit("leaveRoom", userObject.id);
+        const chatBox = document.querySelector("#chat-box");
+        chatBox.innerHTML = "";
     });
 
     chatPopupButton.addEventListener("click", (e) => {
@@ -52,7 +51,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
             chatPopup.classList.remove("hidden");
             chatPopupButton.classList.add("hidden");
 
-            socket.emit("join-room", userObject.id);
+            socket.emit("join-room", { name: userObject.id });
+            socket.on("previous-messages", (msgs) => {
+                messages = [];
+                if (Array.isArray(msgs) && msgs.length > 0) {
+                    msgs.forEach((x) => {
+                        messages.push(x);
+                        loadMessagesToDom(messages, userObject);
+                    });
+                }
+            });
             loadMessagesToDom(messages, userObject);
         }
     });
