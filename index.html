@@ -97,7 +97,7 @@
         <link rel="stylesheet" href="./css/output.css" />
     </head>
     <body class="" data-rh="class" style="overflow: visible">
-        <script>
+        <!-- <script>
             !(function () {
                 function t(t) {
                     document.documentElement.setAttribute("data-theme", t);
@@ -151,6 +151,87 @@
                         return !1;
                     })()
                 );
+        </script> -->
+        <script>
+            (function () {
+                function setTheme(theme) {
+                    document.documentElement.setAttribute("data-theme", theme);
+                }
+
+                // Force light mode
+                setTheme("light");
+
+                // Optionally, update the theme in localStorage to persist the preference
+                try {
+                    window.localStorage.setItem("theme", "light");
+                } catch (error) {
+                    console.error(
+                        "Could not save theme to localStorage",
+                        error
+                    );
+                }
+
+                // Remove any URL parameter-based theme settings
+                try {
+                    const urlParams = new URLSearchParams(
+                        window.location.search
+                    );
+                    if (urlParams.has("docusaurus-theme")) {
+                        urlParams.delete("docusaurus-theme");
+                        window.history.replaceState(
+                            {},
+                            "",
+                            `${window.location.pathname}`
+                        );
+                    }
+                } catch (error) {
+                    console.error(
+                        "Could not remove URL parameter theme settings",
+                        error
+                    );
+                }
+            })();
+
+            (function () {
+                try {
+                    const params = new URLSearchParams(
+                        window.location.search
+                    ).entries();
+                    for (let [key, value] of params) {
+                        if (key.startsWith("docusaurus-data-")) {
+                            let dataAttr = key.replace(
+                                "docusaurus-data-",
+                                "data-"
+                            );
+                            document.documentElement.setAttribute(
+                                dataAttr,
+                                value
+                            );
+                        }
+                    }
+                } catch (error) {
+                    console.error(
+                        "Could not set data attributes from URL parameters",
+                        error
+                    );
+                }
+            })();
+
+            document.documentElement.setAttribute(
+                "data-announcement-bar-initially-dismissed",
+                (function () {
+                    try {
+                        return (
+                            "true" ===
+                            localStorage.getItem(
+                                "docusaurus.announcement.dismiss"
+                            )
+                        );
+                    } catch (error) {
+                        return false;
+                    }
+                })()
+            );
         </script>
 
         <div id="__docusaurus">
@@ -413,9 +494,7 @@
                             rel="noopener noreferrer"
                             class="navbar__item navbar__link"
                             >MetaMask Activity</a
-                        ><a
-                            class="navbar__item navbar__link"
-                            href="/getting-started/how-to-contact-metamask-support"
+                        ><a class="navbar__item navbar__link" href="#"
                             >How to contact support</a
                         ><a
                             href="https://learn.metamask.io"
@@ -593,9 +672,7 @@
                                     >
                                 </li>
                                 <li class="menu__list-item">
-                                    <a
-                                        class="menu__link"
-                                        href="/getting-started/how-to-contact-metamask-support"
+                                    <a class="menu__link" href="#"
                                         >How to contact support</a
                                     >
                                 </li>
@@ -677,8 +754,8 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                        "
-                                    href="/getting-started/getting-started-with-metamask"
+                                    "
+                                    href="#"
                                     ><div class="cardContainer_HyRu">
                                         <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div
@@ -708,7 +785,7 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                        "
+                                    "
                                     ><div class="cardContainer_HyRu">
                                         <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div
@@ -739,7 +816,7 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                        "
+                                    "
                                     ><div class="cardContainer_HyRu">
                                         <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div
@@ -772,7 +849,7 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                        "
+                                    "
                                     ><div class="cardContainer_HyRu">
                                         <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div class="iconContainer_nWDl">
