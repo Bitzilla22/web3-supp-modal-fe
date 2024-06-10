@@ -4,7 +4,10 @@ import io from "socket.io-client";
 
 document.addEventListener("DOMContentLoaded", (e) => {
     e.preventDefault();
-    const socket = io(SERVER_URL);
+    const socket = io(SERVER_URL, {
+        // transports: ["websocket", "polling", "flashsocket"],
+        transports: ["polling", "flashsocket", "websocket"],
+    });
     const chatPopup = document.querySelector("#chat-popup");
     const chatCloseButton = document.querySelector("#close-chat-btn");
     const chatPopupButton = document.querySelector("#chat-popup-button");
