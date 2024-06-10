@@ -18,129 +18,12 @@
             content="width=device-width, initial-scale=1.0"
             data-rh="true"
         />
-        <link
-            rel="canonical"
-            href="https://support.metamask.io/"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/"
-            hreflang="en"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/ro/"
-            hreflang="ro"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/zh-cn/"
-            hreflang="zh-CN"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/vi/"
-            hreflang="vi"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/tr/"
-            hreflang="tr"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/tl/"
-            hreflang="tl"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/th/"
-            hreflang="th"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/pt-br/"
-            hreflang="pt-BR"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/nl/"
-            hreflang="nl"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/ms/"
-            hreflang="ms"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/ko/"
-            hreflang="ko"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/ja/"
-            hreflang="ja"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/it/"
-            hreflang="it"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/fr/"
-            hreflang="fr"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/es/"
-            hreflang="es"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/de/"
-            hreflang="de"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/ru/"
-            hreflang="ru"
-            data-rh="true"
-        />
-        <link
-            rel="alternate"
-            href="https://support.metamask.io/"
-            hreflang="x-default"
-            data-rh="true"
-        />
         <meta
             name="twitter:card"
             content="summary_large_image"
             data-rh="true"
         />
-        <meta
-            property="og:url"
-            content="https://support.metamask.io/"
-            data-rh="true"
-        />
+
         <meta property="og:locale" content="en" data-rh="true" />
         <meta property="og:locale:alternate" content="ro" data-rh="true" />
         <meta property="og:locale:alternate" content="zh_CN" data-rh="true" />
@@ -235,8 +118,10 @@
                 null !== e
                     ? t(e)
                     : window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? t("dark")
-                    : (window.matchMedia("(prefers-color-scheme: light)")
+                    ? t("light")
+                    : // ? t("dark")
+
+                      (window.matchMedia("(prefers-color-scheme: light)")
                           .matches,
                       t("light"));
             })(),
@@ -268,14 +153,6 @@
                 );
         </script>
 
-        <noscript
-            ><iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-"
-                height="0"
-                width="0"
-                style="display: none; visibility: hidden"
-            ></iframe
-        ></noscript>
         <div id="__docusaurus">
             <div role="region" aria-label="Skip to main content">
                 <a
@@ -286,7 +163,7 @@
             </div>
             <div
                 class="announcementBar_mb4j"
-                style="background-color: #037dd6; color: #fff"
+                style="background-color: hsl(205, 97%, 43%); color: #fff"
                 role="banner"
             >
                 <div class="content_knG7 announcementBarContent_xLdY">
@@ -553,7 +430,7 @@
                             class="themeSwitch_hVw7"
                             role="button"
                             tabindex="0"
-                            style="display: none;"
+                            style="display: none"
                         >
                             <svg
                                 class="icon_DZW4"
@@ -800,9 +677,10 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                    "
+                                        "
                                     href="/getting-started/getting-started-with-metamask"
                                     ><div class="cardContainer_HyRu">
+                                        <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div
                                             class="iconContainer_nWDl"
                                             style="background-color: #393e46"
@@ -830,8 +708,9 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                    "
+                                        "
                                     ><div class="cardContainer_HyRu">
+                                        <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div
                                             class="iconContainer_nWDl"
                                             style="background-color: #ffafea"
@@ -860,8 +739,9 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                    "
+                                        "
                                     ><div class="cardContainer_HyRu">
+                                        <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div
                                             class="iconContainer_nWDl"
                                             style="background-color: #efefef"
@@ -892,8 +772,9 @@
                                         text-decoration: none;
                                         font-size: 0;
                                         padding: 10px;
-                                    "
+                                        "
                                     ><div class="cardContainer_HyRu">
+                                        <!-- background-color: hsl(205, 97%, 43%); -->
                                         <div class="iconContainer_nWDl">
                                             <img
                                                 src="/img/icon_contact.svg"
@@ -1782,10 +1663,11 @@
             "
             id="chat-popup"
         > -->
-        <div class="fixed hidden bottom-[1rem] right-0 max-w-md w-full mx-auto z-[999]" id="chat-popup">
-            <div
-                class="rounded-lg overflow-hidden bg-white h-[85vh] shadow-xl"
-            >
+        <div
+            class="fixed hidden bottom-[1rem] right-0 max-w-md w-full mx-auto z-[999]"
+            id="chat-popup"
+        >
+            <div class="rounded-lg overflow-hidden bg-white h-[85vh] shadow-xl">
                 <section
                     class="bg-[#037dd6] py-2 px-4 text-white flex flex-row justify-between w-full"
                 >
