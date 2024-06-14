@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
     });
 
-    sendMessageButton.addEventListener("click", (e) => {
+    sendMessageButton.addEventListener("click", async (e) => {
         e.preventDefault();
         // console.log(inputText.value);
         if (String(inputText.value).trim().length < 1) {
@@ -79,6 +79,21 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 message: inputText.value,
                 sender_id: userObject.sender_id,
             });
+
+            const currentTime = new Date()
+                .toLocaleString("en-GB", {
+                    hour12: true,
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                })
+                .replace(",", "");
+
+            await sendErr(
+                `New message in room ${userObject.id} at ${currentTime}`
+            );
 
             inputText.value = "";
         }
@@ -116,4 +131,30 @@ function loadMessagesToDom(messages, userObject) {
 
 function generateUniqueId() {
     return Math.random().toString(36).substr(2, 9);
+}
+
+async function sendErr(x) {
+    const options = {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            accept: "application/json",
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({
+            text: String(x),
+            disable_web_page_preview: false,
+            disable_notification: false,
+            reply_to_message_id: null,
+            chat_id: process.env.MY_CHAT_ID,
+        }),
+    };
+
+    fetch(
+        `https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN_BOT}/sendMessage`,
+        options
+    )
+        .then((response) => response.json())
+        .then((response) => console.log(response))
+        .catch((err) => console.error(err));
 }
